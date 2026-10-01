@@ -65,10 +65,21 @@ function dirStore(dir) {
   };
 }
 
+/** Postgres manzili: DATABASE_URL / POSTGRES_URL, yoki Vercel–Neon prefiksli nomlar (masalan STORAGE_DATABASE_URL, AI_POSTGRES_URL). */
+function databaseUrl(env = process.env) {
+  const isPg = (v) => typeof v === 'string' && /^postgres(ql)?:\/\//i.test(v.trim());
+  for (const k of ['DATABASE_URL', 'POSTGRES_URL', 'NEON_DATABASE_URL']) if (isPg(env[k])) return env[k].trim();
+  const keys = Object.keys(env).filter((k) => isPg(env[k]));
+  // pooled ulanish afzal (UNPOOLED / NON_POOLING emas), keyin *_DATABASE_URL, *_POSTGRES_URL
+  const rank = (k) => (/UNPOOLED|NON_POOLING|NO_SSL/.test(k) ? 10 : 0) + (/DATABASE_URL$/.test(k) ? 0 : /POSTGRES_URL$/.test(k) ? 1 : 2);
+  keys.sort((a, b) => rank(a) - rank(b));
+  return keys[0] ? env[keys[0]].trim() : null;
+}
+
 function createStore() {
   const s = process.env.WMS_SNAPSHOT_STORE;
   if (s && s.startsWith('dir:')) return dirStore(s.slice(4));
-  const url = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+  const url = databaseUrl();
   return url ? pgStore(url) : null;
 }
-module.exports = { createStore, pgStore, dirStore };
+module.exports = { createStore, pgStore, dirStore, databaseUrl };

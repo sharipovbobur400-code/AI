@@ -22,7 +22,7 @@ function init(dataDir) {
   if (process.env.WMS_MASTER_KEY) { master = crypto.createHash('sha256').update(process.env.WMS_MASTER_KEY).digest(); return; }
   if (process.env.VERCEL || process.env.WMS_SERVERLESS === '1') {
     // serverless disks are temporary: a key file would be lost on the next cold start
-    const fallback = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    const fallback = require('./snapshot-store').databaseUrl();
     if (!fallback) throw new Error('Vercel: WMS_MASTER_KEY muhit o‘zgaruvchisini kiriting (kalitlarni shifrlash uchun)');
     console.warn('WMS_MASTER_KEY berilmagan — shifrlash kaliti DATABASE_URL dan olinmoqda. Vercel sozlamalarida WMS_MASTER_KEY ni alohida kiriting.');
     master = crypto.createHash('sha256').update(`wms-master:${fallback}`).digest(); return;

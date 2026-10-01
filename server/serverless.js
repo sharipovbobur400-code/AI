@@ -64,7 +64,7 @@ async function locked(fn, forcePush = false) {
 
 async function boot() {
   store = createStore();
-  if (!store) throw new Error('DATABASE_URL topilmadi. Vercel → Storage → Neon (Postgres) bazasini ulang — DATABASE_URL avtomatik qo‘shiladi.');
+  if (!store) throw new Error('Postgres bazasi topilmadi (DATABASE_URL yo‘q). Vercel → Storage → Neon bazasini loyihaga ulang va Production + Preview muhitlarini belgilang, so‘ng Deployments → Redeploy qiling.');
   await store.init();
   const d = await store.download();
   if (d) { writeLocal(d.data); localVersion = d.version; }
