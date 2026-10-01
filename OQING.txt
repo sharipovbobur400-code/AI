@@ -1,0 +1,40 @@
+SOLAR FACTORY WMS — WEB SAYT + TELEGRAM BOT
+============================================
+
+Bu arxivda to'liq tizim bor: web sayt (ombor, ta'minot, yig'ish, logistika, XETQ, AI),
+backend server, ma'lumotlar bazasi va Telegram bot. Qo'shimcha dastur o'rnatish shart emas.
+
+1) TALAB
+   Node.js 22.5 yoki undan yangi (tavsiya: 24 LTS) — https://nodejs.org
+
+2) ISHGA TUSHIRISH
+   Windows : start.bat faylini ikki marta bosing
+   Linux/Mac: sh start.sh
+   yoki     : npm start
+
+   Brauzer: http://localhost:3000
+   Birinchi ishga tushishda baza demo ma'lumotlar bilan avtomatik yaratiladi.
+
+3) KIRISH (demo hisoblar, parol: Solar2026!)
+   direktor, menejer, omborchi1, qc, logist, taminot, admin, kuzatuvchi
+   Haqiqiy ishlatishdan oldin parollarni almashtiring (SEED_PASSWORD yoki Sozlamalar).
+
+4) TELEGRAM BOTNI YOQISH
+   a) Telegramda @BotFather -> /newbot -> bot nomini bering -> TOKEN oling
+   b) .env faylini oching (start.bat uni avtomatik yaratadi) va yozing:
+        TELEGRAM_BOT_TOKEN=123456789:AAxxxxxxxxxxxxxxxx
+   c) Serverni qayta ishga tushiring
+   d) Saytda: Sozlamalar -> Telegram bot -> "Kod olish" -> QR ni skanerlang
+      yoki botga /start KOD yuboring. Har bir xodim o'z hisobi bilan ulanadi.
+
+5) TESTLAR
+   npm test          — 15 ta yakuniy qabul testi
+   npm run test:bot  — 13 ta Telegram bot testi (soxta Telegram API bilan)
+
+6) MUHIM
+   - Ma'lumotlar "data" papkasida saqlanadi (baza, fayllar, kunlik backup).
+   - Bir xil bot tokeni bilan faqat BITTA server ishlashi kerak.
+   - Tarmoqqa chiqarishda HTTPS ishlating (.env: TLS_CERT/TLS_KEY yoki BEHIND_HTTPS=1).
+   - AI kaliti (ixtiyoriy): .env -> ANTHROPIC_API_KEY. Kalitsiz ham AI database tahlili ishlaydi.
+
+Batafsil: README.md

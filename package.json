@@ -1,0 +1,31 @@
+{
+  "name": "solar-factory-wms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Solar Factory AI — Ombor, Ta'minot, Yig'ish, Logistika va XETQ boshqaruv tizimi (WMS)",
+  "main": "app.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --no-warnings app.js",
+    "reset": "node --no-warnings scripts/reset.js",
+    "test": "node --no-warnings test/acceptance.js",
+    "test:bot": "node --no-warnings test/bot-test.js",
+    "test:real": "node --no-warnings test/real-test.js",
+    "test:all": "node --no-warnings test/acceptance.js && node --no-warnings test/bot-test.js && node --no-warnings test/real-test.js && node --no-warnings test/vercel-test.js && node --no-warnings test/transfer-test.js && node --no-warnings test/section-test.js && node --no-warnings test/odoo-test.js && node --no-warnings test/admin-test.js && node --no-warnings test/teambots-test.js && node --no-warnings test/production-test.js",
+    "test:vercel": "node --no-warnings test/vercel-test.js",
+    "test:transfer": "node --no-warnings test/transfer-test.js",
+    "test:sections": "node --no-warnings test/section-test.js",
+    "test:odoo": "node --no-warnings test/odoo-test.js",
+    "test:admin": "node --no-warnings test/admin-test.js",
+    "test:teambots": "node --no-warnings test/teambots-test.js",
+    "test:production": "node --no-warnings test/production-test.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^11.8.1"
+  }
+}

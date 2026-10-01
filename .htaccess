@@ -1,0 +1,6 @@
+# Ehtiyot chorasi: agar hosting (Apache) shu papkani to'g'ridan-to'g'ri veb orqali ko'rsatsa,
+# maxfiy fayllar ochilib qolmasin. Odatda barcha so'rovlarni Node.js ilova (app.js) qabul qiladi.
+<FilesMatch "(^\.env|\.db|\.db-wal|\.db-shm|\.key|\.bat)$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/(data|server|test|scripts|node_modules)(/|$)
