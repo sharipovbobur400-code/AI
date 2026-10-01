@@ -22,6 +22,8 @@ Zip ichidagi fayllarni repozitoriy **ildiziga** joylang (`package.json`, `vercel
 
 ## 3. Baza: Storage → Create → Neon (Postgres)
 Loyihaga ulang — `DATABASE_URL` avtomatik qo‘shiladi. (Bazasiz sayt ochiladi, lekin API “Server sozlanmagan: DATABASE_URL topilmadi” deydi.)
+Neon’ni alohida (neon.tech) ochgan bo‘lsangiz: **Connection string** ni nusxalab, Vercel → Settings → Environment Variables ga `DATABASE_URL` nomi bilan qo‘shing.
+Jadvallar (`wms_snapshot`, `wms_lock`) birinchi so‘rovda avtomatik yaratiladi — qo‘lda SQL yozish shart emas.
 
 ## 4. Settings → Environment Variables
 | O‘zgaruvchi | Qiymat |
@@ -35,6 +37,9 @@ Loyihaga ulang — `DATABASE_URL` avtomatik qo‘shiladi. (Bazasiz sayt ochiladi
 | `WMS_BASE_URL` | `https://<loyiha>.vercel.app` (Telegram webhook manzili uchun) |
 | `BOT_MORNING_HOUR` / `BOT_EVENING_HOUR` | `8` / `22` |
 | `AI_API_KEY`, `TELEGRAM_BOT_TOKEN` | ixtiyoriy — saytdagi **API kalitlar** bo‘limidan ham kiritish mumkin |
+| `ANTHROPIC_API_KEY` | Claude API kaliti (`sk-ant-…`) — jamoa botlari va AI javoblari uchun |
+| `TAMINOT_BOT_TOKEN`, `OMBOR_BOT_TOKEN`, `ISHLAB_BOT_TOKEN`, `XULOSA_BOT_TOKEN` | 4 ta jamoa boti tokeni (@BotFather) — saytdagi **Jamoa botlari** sahifasidan ham kiritish mumkin |
+| `TEAMBOTS_ADMIN_IDS` | botlar bilan shaxsiy chatda gaplasha oladigan Telegram ID lar (vergul bilan) |
 
 Tasodifiy satr olish: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
 
